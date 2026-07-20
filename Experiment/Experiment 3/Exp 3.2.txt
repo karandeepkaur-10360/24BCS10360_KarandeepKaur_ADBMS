@@ -1,0 +1,7 @@
+Experiment 3.2
+
+Task : Count the number of students in each city
+Table Name : Students
+Attributes : SID , SNAME , CITY 
+
+Code: Select City , Count(*) AS Cnt from Students group by City;
