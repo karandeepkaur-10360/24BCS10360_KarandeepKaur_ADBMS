@@ -1,0 +1,7 @@
+Experiment 2.1  (Union)
+
+
+Task  : Write a query using union to stack the table 'Arts' over 'Science' and output the final table
+
+Code : select * from Arts Union select * from Science;
+
