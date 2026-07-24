@@ -1,0 +1,4 @@
+Task : Write a delete query to delete John Doe's details from Customers table and notice the changes in the Orders table
+
+Code: delete from Customers where customer_id = 1;
+ select * from Orders;
