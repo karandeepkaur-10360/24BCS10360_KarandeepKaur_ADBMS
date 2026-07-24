@@ -1,0 +1,5 @@
+Experiment 3.3
+LEETCODE 183
+
+Code : select name AS Customers from Customers where 
+ID NOT IN(SELECT CUSTOMERID FROM ORDERS);
