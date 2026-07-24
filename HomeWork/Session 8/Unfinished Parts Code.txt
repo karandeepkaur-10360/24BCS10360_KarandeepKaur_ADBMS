@@ -1,0 +1,3 @@
+Task : Write a query to determine which parts have begun the assembly process but are not yet finished.
+
+Code : SELECT part,assembly_step FROM parts_assembly where finish_date is NULL;

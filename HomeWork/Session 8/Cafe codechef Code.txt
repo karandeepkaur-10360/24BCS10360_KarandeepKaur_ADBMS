@@ -1,0 +1,4 @@
+Task : Output the table 'Orders', limited to 5 entries.
+
+
+Code : select * from Orders LIMIT(5);
