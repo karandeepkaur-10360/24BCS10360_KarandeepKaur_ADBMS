@@ -1,0 +1,35 @@
+Experiment 5.3 PL-SQL
+
+Code : if then
+
+Do $$
+
+Declare 
+	age int:=18;
+Begin 
+	if(age>=18) then raise notice 'Your age is % and you are eligible to vote',age;
+	END IF;
+END;
+
+$$
+
+
+Code : else if 
+Do $$
+Declare 
+   val int:=4;
+Begin
+	if val>0 AND val<=10 then
+	raise notice 'your value is % and range is between 1 and 10' , val;
+
+	elsif val>10 AND val<=20 then
+	raise notice 'your value is % and range is between 11 and 20' , val;
+
+	else 
+	raise notice 'value is greater than 20';
+
+	End if;
+
+	End ;
+$$
+	
