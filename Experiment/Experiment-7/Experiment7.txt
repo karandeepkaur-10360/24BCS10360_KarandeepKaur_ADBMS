@@ -1,0 +1,66 @@
+Experiment 7
+Explicit Cursor
+
+
+
+
+CREATE TABLE employees (
+    employee_id NUMBER PRIMARY KEY,
+    first_name VARCHAR2(50),
+    last_name VARCHAR2(50),
+    department_id NUMBER,
+    salary NUMBER(10,2)
+);
+
+
+INSERT INTO employees VALUES (1, 'John', 'Smith', 10, 50000);
+INSERT INTO employees VALUES (2, 'Alice', 'Brown', 10, 60000);
+INSERT INTO employees VALUES (3, 'David', 'Wilson', 20, 45000);
+INSERT INTO employees VALUES (4, 'Emma', 'Davis', 10, 55000);
+INSERT INTO employees VALUES (5, 'Robert', 'Taylor', 30, 70000);
+
+COMMIT;
+
+
+DECLARE
+
+    CURSOR emp_cursor IS
+        SELECT employee_id, salary
+        FROM employees;
+
+    V_Emp_ID employees.employee_id%TYPE;
+    V_Salary employees.salary%TYPE;
+
+    Salary_Zero EXCEPTION;
+
+BEGIN
+
+    OPEN emp_cursor;
+
+    FETCH emp_cursor INTO V_Emp_ID, V_Salary;
+
+    WHILE emp_cursor%FOUND
+    LOOP
+
+        IF V_Salary = 0 THEN
+            RAISE Salary_Zero;
+        END IF;
+
+        UPDATE employees
+        SET salary = V_Salary * 1.10
+        WHERE employee_id = V_Emp_ID;
+
+        FETCH emp_cursor INTO V_Emp_ID, V_Salary;
+
+    END LOOP;
+
+    CLOSE emp_cursor;
+
+EXCEPTION
+
+    WHEN Salary_Zero THEN
+        DBMS_OUTPUT.PUT_LINE('Salary is Zero. Increment not possible');
+
+END;
+/
+select * from EMPLOYEES;
