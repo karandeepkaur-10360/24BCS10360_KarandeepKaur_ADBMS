@@ -1,0 +1,41 @@
+Experiment 10.1
+
+Find the second-highest and third-highest salaries of employees.
+
+
+Code : 
+CREATE TABLE Employee (
+    EmpID INT,
+    EmpName VARCHAR(20),
+    Salary INT
+);
+
+INSERT INTO Employee VALUES (1, 'Aman', 30000);
+INSERT INTO Employee VALUES (2, 'Simran', 50000);
+INSERT INTO Employee VALUES (3, 'Rahul', 40000);
+INSERT INTO Employee VALUES (4, 'Priya', 60000);
+
+-----2nd Highest Salary:----
+SELECT MAX(Salary)
+FROM Employee
+WHERE Salary < (
+    SELECT Salary
+    FROM Employee
+    ORDER BY Salary DESC
+    LIMIT 1
+);
+
+
+----3rd Highest Salary ----
+SELECT MAX(Salary)
+FROM Employee
+WHERE Salary < (
+    SELECT MAX(Salary)
+    FROM Employee
+    WHERE Salary < (
+        SELECT Salary
+        FROM Employee
+        ORDER BY Salary DESC
+        LIMIT 1
+    )
+);
